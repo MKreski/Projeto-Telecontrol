@@ -1,0 +1,4 @@
+ocorreu um erro em - distancia maxima - erro: could not convert string to float: 'asd' as 2025-05-19 14:41:44.521294
+ocorreu um erro em - filtragem - erro: name 'cordenadas_chamado' is not defined as 2025-05-19 14:41:48.798540
+ocorreu um erro em - filtragem - erro: cannot access local variable 'cordenadas' where it is not associated with a value as 2025-05-19 14:41:54.105941
+ocorreu um erro em - filtragem - erro: name 'cordenadas_chamado' is not defined. As 2025-05-19 14:43:41.188836
