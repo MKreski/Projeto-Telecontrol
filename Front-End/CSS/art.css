@@ -1,0 +1,58 @@
+/* Fundo da página */
+body {
+    background-color: #200741; 
+    font-family: Arial, sans-serif;
+}
+/* Caixa de login */
+.login-container {
+    background-color: #200741;
+    width: 500px;
+    margin: 0px auto;  /* Aumente aqui o tamanho da margem */
+    padding: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.logo {
+    display: block;        
+    margin: 0 auto 20px auto;  
+    width: 410px;            /* Aumente aqui o tamanho da logo */
+    height: auto;           
+}
+/* Título */
+.login-container h2 {
+    text-align: center;
+    color: #333;
+    font-size: 30px;    /* Aumenta o tamanho do texto */
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Campos */
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #E79C1A;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botão */
+.login-container button {
+    width: 105%;
+    padding: 10px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #004999;
+}
