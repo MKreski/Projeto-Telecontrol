@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../CSS/form.css">
+    <link rel="stylesheet" href="{% static 'CSS/form.css'%}">
+
 </head>
 <h2 style="color: #f7c81e"> Informar problema</h2>
 <body style="background-color: #200741">
@@ -76,8 +79,9 @@
 <option value="media">Média</option>
 <option value="alta">Alta</option>
 <option value="imediata">Imediata</option>
+
 </select>
     <input type="submit" onclick="test()" /input>
 </body>
-<script src="info.js"> </script>
+<script src="{%static 'info.js'%}"> </script>
 </html>

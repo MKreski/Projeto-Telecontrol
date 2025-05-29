@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2e0e4e;
+    color: #303030;
+}
+
+header {
+    background-color: orange; 
+    color: #fff;
+    padding: 9px;
+    text-align: center;
+    border: 3px solid #facc15;
+}
+
+header img {
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+    border-radius: 50px;
+}
+
+footer {
+    background-color: orange;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border: color(black);
+
+}
+
+main {
+    display: flex;
+    height: calc(100vh - 120px); 
+}
+
+#chamados {
+    width: 50%;
+    padding: 30px;
+    background-color: #2e0e4e;
+    overflow-y: auto;
+    border-right: 3px solid #facc15; 
+}
+
+#chamados h2 {
+    color: orange;
+    margin-bottom: 20px;
+}
+
+.chamado {
+    background-color: #c7c7c7;
+    border-left: 10px solid orange;
+    padding: 8px;
+    margin-bottom: 7px;
+    border-radius: 10px;
+}
+
+.chamado p {
+    margin-bottom: 8px;
+}
+
+.chamado button {
+    background-color: wheat;
+    color: #5e2ca5;
+    border: none;
+    padding: 6px 11px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.chamado button:hover {
+    background-color: #ffffff;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin: auto 
+}

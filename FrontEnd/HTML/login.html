@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Telecontrol</title>
-    <link rel="stylesheet" href="../CSS/art.css">
+    <link rel="stylesheet" href="{% static 'CSS/art.css'%}">
 </head>
 <body>
 
     <div class="login-container">
-         <img src="../IMG/imgnome.png" alt="Logo" class="logo">
+         <img src="{% static '/media/imgnome.png' %}" alt="Logo" class="logo">
         <h2>Login</h2>
         <form>
             <label for="username">Usuário:</label>

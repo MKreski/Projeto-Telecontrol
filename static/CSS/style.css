@@ -1,0 +1,83 @@
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #200741; 
+    font-family: Arial, sans-serif;
+    position: relative;
+    align-items: center;
+}
+
+.linha-vertical {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: #FFFF00;
+    transform: translateX(-50%);
+}
+
+.box_chamadas {
+    width: 532px;
+    height: 796px;
+    background-color: #433262;
+    position: relative;
+    margin-left: 200px;
+    border-radius: 6px;
+    text-align: center;
+    color: white;
+}
+
+.chamada{
+    margin-top: 30px;
+}
+
+label{
+    display: block;
+    margin-top: 50px;
+    margin-right: 320px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+input {
+  width: 370px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+label[for="nome"]{
+    margin-right: 330px;
+}
+
+label[for="local"]{
+    margin-right: 330px;
+}
+
+.solicitar{
+    margin-top: 80px;
+    width: 400px;
+    height: 45px;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+    background-color: #200741;
+    font-size: 19px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.icone_tele{
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  height: 40px; /* ajuste conforme necessário */
+  cursor: pointer;
+}
