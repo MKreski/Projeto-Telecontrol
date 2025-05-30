@@ -26,14 +26,18 @@ def gerar_chamado():
   
   cord_chamado = [chamado_x, chamado_y]
   areas = []
+  areas_arquivo = []
 
   nome_fake = gerar_nome_empresa()
 
-  with open("../arquivos/areas_tecnicas_conserto.txt", "r", encoding="utf-8") as file:
+  with open("BackEnd/arquivos/areas_tecnicas_conserto.txt", "r", encoding="utf-8") as file:
     for area in file:
-      areas.append(area)
+      areas_arquivo.append(area)
+
+  for id in chamado:
+    areas.append(areas_arquivo[id - 1])
   
-  return chamado, nome_fake, cord_chamado, areas
+  return [chamado, nome_fake, cord_chamado, areas]
 
 def similaridade(list1, list2):
   set1 = set(list1)
@@ -44,7 +48,7 @@ def similaridade(list1, list2):
   return jaccard
 
 def amostragem(lista, ordenacao, empresa, distancias, max_distance, chamado, areas_escritas):
-    with open("../arquivos/tecnicos.txt", "r", encoding="utf-8") as arq_tecs:
+    with open("BackEnd/arquivos/tecnicos.txt", "r", encoding="utf-8") as arq_tecs:
         content = arq_tecs.readlines()
 
     tabela = []
@@ -58,6 +62,8 @@ def amostragem(lista, ordenacao, empresa, distancias, max_distance, chamado, are
                 if amostra_distancia <= max_distance and (t * 100) != 0:
                   posicao += 1
                   tabela.append([posicao, partes[0], partes[1], f"{t * 100:.2f}%", f"{amostra_distancia} km"])
+    
+    salvar_resultado(tabela)
 
     print(f"A empresa {empresa}, esta solicitando os seguintes serviços: ")
     for id in chamado:
@@ -67,7 +73,7 @@ def amostragem(lista, ordenacao, empresa, distancias, max_distance, chamado, are
     print(tabulate(tabela, headers=["#", "Nome", "CPF", "Proximidade", "Distância"], tablefmt="grid"))
 
 def log(onde : str, erro : str):
-    with open("../arquivos/log.txt", "a+") as arq:
+    with open("BackEnd/arquivos/log.txt", "a+") as arq:
         arq.write( "ocorreu um erro em - " + onde + " - erro: " + str(erro) + ". As " + str(datetime.now()) + "\n")
 
 def peso_distancia(x, limite):
@@ -79,7 +85,7 @@ def filtragem(cord_chamado, areas_chamado, max_distance):
   tecs_pesados = []
 
   while True:
-    with open("../arquivos/tecnicos.txt", "r", encoding="utf-8") as arq_tecs:
+    with open("BackEnd/arquivos/tecnicos.txt", "r", encoding="utf-8") as arq_tecs:
       for l in arq_tecs:
         parts = l.strip().split(", ")
         if len(parts) >= 4:
@@ -91,13 +97,13 @@ def filtragem(cord_chamado, areas_chamado, max_distance):
       break
 
   while True:
-    with open("../arquivos/especialidades.txt", "r", encoding="utf-8") as arq_especialidade:
+    with open("BackEnd/arquivos/especialidades.txt", "r", encoding="utf-8") as arq_especialidade:
       especialidades = arq_especialidade.readlines()
       for i, linha in enumerate(especialidades):
         tecnico = []
         tecnico+= loads(linha)
         simi = similaridade(areas_chamado, tecnico)
-        simi_pesado = simi * peso_distancia(distancias[i],max_distance)
+        simi_pesado = simi * (peso_distancia(distancias[i],max_distance)) 
         tecs_pesados.append(round(simi_pesado, 5))
       break
 
@@ -108,3 +114,20 @@ def filtragem(cord_chamado, areas_chamado, max_distance):
   ordem_pesada = [indices[i] for i in indices_ordenados_pesados]
 
   return tecs_pesados_ordenados, ordem_pesada, distancias
+
+def salvar_chamado(chamado):
+    with open("BackEnd/arquivos/chamados.txt", "w", encoding="utf-8") as arq_chamados:
+        arq_chamados.write(f"{chamado}")
+
+def carregar_chamados():
+   chamado = []
+   try:
+       with open("BackEnd/arquivos/chamados.txt", "r", encoding="utf-8") as arq_chamados:
+           for linha in arq_chamados:
+               chamado.append(linha.strip())
+   except FileNotFoundError:
+       print("Arquivo de chamados não encontrado.")
+
+def salvar_resultado(tabela):
+    with open("BackEnd/arquivos/resultados.txt", "w", encoding="utf-8") as arq_resultados:
+        arq_resultados.write(f"{tabela}")

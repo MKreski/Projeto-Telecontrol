@@ -7,33 +7,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forms</title>
     <link rel="stylesheet" href="{% static 'CSS/form.css'%}">
-
 </head>
 
-<body style="background: radial-gradient(circle, #2b1e4a 0%, #1a0f2b 80%); "> <!--background-color: #200741-->
+<body style="background: radial-gradient(circle, #2b1e4a 0%, #1a0f2b 80%);">
   <h2 style="color: #f7c81e"> Informar problema</h2>
+
   <div class="container">
     <form action="{% url 'telecontrol:telecontrol_form' %}" method="POST">
       {% csrf_token %}
       {% for item in form %}
-        <div class="container">
-          <input
-            type="text"
-            id="{{ item.id_for_label }}"
-            name="{{ item.name }}"
-            autocomplete="off"
-            placeholder=" "
-            class="form__input"
-            value="{{ item.value|default_if_none:'' }}"
-          />
-          <label for="{{ item.id_for_label }}">{{ item.label }}</label>
-        </div>
+        {% if item.name == "localizacao" %}
+          <!-- CEP com busca automática -->
+          <div class="container">
+            <input
+              type="text"
+              id="cep"
+              name="cep"
+              class="form__input"
+              placeholder=" "
+              maxlength="9"
+              onblur="buscarEndereco()"
+              value="{{ item.value|default_if_none:'' }}"
+            />
+            <label for="cep">CEP</label>
+          </div>
+
+          <div class="container">
+            <input
+              type="text"
+              id="rua"
+              name="rua"
+              class="form__input"
+              placeholder=" "
+            />
+            <label for="rua">Rua</label>
+          </div>
+
+          <div class="container">
+            <input
+              type="text"
+              id="bairro"
+              name="bairro"
+              class="form__input"
+              placeholder=" "
+            />
+            <label for="bairro">Bairro</label>
+          </div>
+
+          <div class="container">
+            <input
+              type="text"
+              id="cidade"
+              name="cidade"
+              class="form__input"
+              placeholder=" "
+            />
+            <label for="cidade">Cidade</label>
+          </div>
+
+          <div class="container">
+            <input
+              type="text"
+              id="estado"
+              name="estado"
+              class="form__input"
+              placeholder=" "
+              maxlength="2"
+            />
+            <label for="estado">Estado</label>
+          </div>
+        {% else %}
+          <div class="container">
+            <input
+              type="text"
+              id="{{ item.id_for_label }}"
+              name="{{ item.name }}"
+              autocomplete="off"
+              placeholder=" "
+              class="form__input"
+              value="{{ item.value|default_if_none:'' }}"
+            />
+            <label for="{{ item.id_for_label }}">{{ item.label }}</label>
+          </div>
+        {% endif %}
       {% endfor %}
+
       <div class="container">
         <input type="submit" value="Enviar" class="form__submit">
+      </div>
     </form>
-</div>
-</select>
+  </div>
 </body>
-<script src="{%static 'info.js'%}"> </script>
+
+<script src="{% static 'info.js' %}"></script>
+<script>
+  function buscarEndereco() {
+    const cep = document.getElementById('cep').value.replace(/\D/g, '');
+
+    if (cep.length !== 8) {
+      alert("CEP inválido! Deve conter 8 dígitos.");
+      return;
+    }
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.erro) {
+          alert("CEP não encontrado!");
+          return;
+        }
+
+        document.getElementById('rua').value = data.logradouro || '';
+        document.getElementById('bairro').value = data.bairro || '';
+        document.getElementById('cidade').value = data.localidade || '';
+        document.getElementById('estado').value = data.uf || '';
+      })
+      .catch(() => {
+        alert("Erro ao buscar o CEP. Tente novamente mais tarde.");
+      });
+  }
+</script>
 </html>

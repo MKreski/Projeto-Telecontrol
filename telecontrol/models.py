@@ -4,6 +4,7 @@ from django.db import models
 class ChamadoModel(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(null=True, blank=True)
+    descricao = models.CharField(null=True, blank=True, max_length=500)
     empresa = models.CharField(max_length=100)
     email = models.EmailField()
     especialidades = models.TextField()
