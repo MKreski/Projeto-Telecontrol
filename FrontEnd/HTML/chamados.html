@@ -15,72 +15,19 @@
     <main>
         <section id="chamados">
             <h2>Chamados Pendentes</h2>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
-            <div class="chamado">
-                <p><strong>Cliente:</strong> ...</p>
-                <p><strong>Problema:</strong> ...</p>
-                <button>Aceitar Chamado</button>
-            </div>
+            {% for chamado in chamados %}
+                <div class="chamado">
+                    <p>{{chamado.empresa}}</p>
+                    <p>{{chamado.especialidades}}</p>
+                    <p>{{chamado.localizacao}}</p>
+                </div>
+            {% endfor %}
         </section>
 
 
-        <div>
+        <div class="map-container">
             <!-- aqui seria o mapa, resolvi não por a imagem q o chiaramonte colocou ja q ja vai mudar msm -->
-            id="map"><img src="{% static 'media/mapa.png'%}" alt="mapa" width="1300px" height="825px">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114820.19900879095!2d-50.02528539810855!3d-22.204104381416506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bfd72c62b64a63%3A0xa6490d177f5adcfa!2zTWFyw61saWEsIFNQ!5e1!3m2!1spt-BR!2sbr!4v1748621930881!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
             
         

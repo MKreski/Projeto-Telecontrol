@@ -12,77 +12,28 @@
 
 <body style="background: radial-gradient(circle, #2b1e4a 0%, #1a0f2b 80%); "> <!--background-color: #200741-->
   <h2 style="color: #f7c81e"> Informar problema</h2>
-<div class="container">
-      <input
-        type="text"
-        id="Nome"
-        autocomplete="off"
-        placeholder=" "
-        class="form__input"
-      />
-      <label for="name">Nome</label>
-
-    </div>
-<div class="container">
-      <input
-        type="text"
-        id="Empresa"
-        autocomplete="off"
-        placeholder=" "
-        class="form__input"
-      />
-      <label for="name">Empresa</label>
-
-    </div>
-<p>
-<div class="container">
-      <input
-        type="text"
-        id="Email"
-        autocomplete="off"
-        placeholder=" "
-        class="form__input"
-      />
-      <label for="name">Email</label>
-
-    </div>
-<p>
-<div class="container">
-      <input
-        type="text"
-        id="problema"
-        autocomplete="off"
-        placeholder=" "
-        class="form__input"
-      />
-      <label for="name">Problema</label>
-
-    </div>
-<div class="container">
-      <input
-        type="text"
-        id="local"
-        autocomplete="off"
-        placeholder=" "
-        class="form__input"
-      />
-      <label for="name">Localização</label>
-
-    </div>
-</p> 
-<h2 style="color: #f7c81e">Nível de urgência</h2>
-<p></p>
-<label for="urgencia">
-
-</label>
-<select id="Urgência" name="Urgência">
-<option value="Pequena">Pequena</option>
-<option value="media">Média</option>
-<option value="alta">Alta</option>
-<option value="imediata">Imediata</option>
-
+  <div class="container">
+    <form action="{% url 'telecontrol:telecontrol_form' %}" method="POST">
+      {% csrf_token %}
+      {% for item in form %}
+        <div class="container">
+          <input
+            type="text"
+            id="{{ item.id_for_label }}"
+            name="{{ item.name }}"
+            autocomplete="off"
+            placeholder=" "
+            class="form__input"
+            value="{{ item.value|default_if_none:'' }}"
+          />
+          <label for="{{ item.id_for_label }}">{{ item.label }}</label>
+        </div>
+      {% endfor %}
+      <div class="container">
+        <input type="submit" value="Enviar" class="form__submit">
+    </form>
+</div>
 </select>
-    <input type="submit" onclick="test()" /input>
 </body>
 <script src="{%static 'info.js'%}"> </script>
 </html>
