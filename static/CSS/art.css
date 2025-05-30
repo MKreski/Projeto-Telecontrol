@@ -1,27 +1,27 @@
 /* Fundo da página */
 body {
-    background-color: #200741; 
+    background: radial-gradient(circle, #2b1e4a 0%, #1a0f2b 80%);
     font-family: Arial, sans-serif;
 }
 /* Caixa de login */
 .login-container {
-    background-color: #200741;
     width: 500px;
     margin: 0px auto;  /* Aumente aqui o tamanho da margem */
     padding: 300px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .logo {
     display: block;        
     margin: 0 auto 20px auto;  
     width: 410px;            /* Aumente aqui o tamanho da logo */
-    height: auto;           
+    height: auto;   
+    border: none;    
+    margin-top: -100px;    
 }
 /* Título */
 .login-container h2 {
     text-align: center;
-    color: #333;
+    color: rgb(207, 205, 205);
     font-size: 30px;    /* Aumenta o tamanho do texto */
     margin-top: 10px;
     margin-bottom: 20px;
@@ -31,7 +31,7 @@ body {
 .login-container label {
     display: block;
     margin-bottom: 5px;
-    color: #E79C1A;
+    color: rgb(207, 205, 205);
 }
 
 .login-container input {
@@ -42,17 +42,24 @@ body {
     border-radius: 5px;
 }
 
+input{
+    margin-top: 10px;
+}
+
 /* Botão */
 .login-container button {
     width: 105%;
     padding: 10px;
-    background-color: #0066cc;
+    background-color: #200741;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .login-container button:hover {
-    background-color: #004999;
+    background-color: #441a92a1;
 }

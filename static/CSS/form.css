@@ -14,6 +14,9 @@ body {
   font-family: Arial, sans-serif;
   flex-direction: column; /* adiciona empilhamento vertical */
 }
+      h2{
+        margin-top: 20px;
+      }
 
       .container {
         width: 400px;
