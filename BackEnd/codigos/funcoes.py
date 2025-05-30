@@ -30,7 +30,7 @@ def gerar_chamado():
 
   nome_fake = gerar_nome_empresa()
 
-  with open("BackEnd/arquivos/areas_tecnicas_conserto.txt", "r", encoding="utf-8") as file:
+  with open("../arquivos/areas_tecnicas_conserto.txt", "r", encoding="utf-8") as file:
     for area in file:
       areas_arquivo.append(area)
 
@@ -48,7 +48,7 @@ def similaridade(list1, list2):
   return jaccard
 
 def amostragem(lista, ordenacao, empresa, distancias, max_distance, chamado, areas_escritas):
-    with open("BackEnd/arquivos/tecnicos.txt", "r", encoding="utf-8") as arq_tecs:
+    with open("../arquivos/tecnicos.txt", "r", encoding="utf-8") as arq_tecs:
         content = arq_tecs.readlines()
 
     tabela = []
@@ -66,14 +66,14 @@ def amostragem(lista, ordenacao, empresa, distancias, max_distance, chamado, are
     salvar_resultado(tabela)
 
     print(f"A empresa {empresa}, esta solicitando os seguintes serviços: ")
-    for id in chamado:
-      print(areas_escritas[id - 1])
+    for area in areas_escritas:
+      print(area)
     print("\n")
     print(f"O Rank dos Técnicos mais apropriados considerando um raio de {max_distance}kms são: ")
     print(tabulate(tabela, headers=["#", "Nome", "CPF", "Proximidade", "Distância"], tablefmt="grid"))
 
 def log(onde : str, erro : str):
-    with open("BackEnd/arquivos/log.txt", "a+") as arq:
+    with open("../arquivos/log.txt", "a+") as arq:
         arq.write( "ocorreu um erro em - " + onde + " - erro: " + str(erro) + ". As " + str(datetime.now()) + "\n")
 
 def peso_distancia(x, limite):
@@ -85,7 +85,7 @@ def filtragem(cord_chamado, areas_chamado, max_distance):
   tecs_pesados = []
 
   while True:
-    with open("BackEnd/arquivos/tecnicos.txt", "r", encoding="utf-8") as arq_tecs:
+    with open("../arquivos/tecnicos.txt", "r", encoding="utf-8") as arq_tecs:
       for l in arq_tecs:
         parts = l.strip().split(", ")
         if len(parts) >= 4:
@@ -97,7 +97,7 @@ def filtragem(cord_chamado, areas_chamado, max_distance):
       break
 
   while True:
-    with open("BackEnd/arquivos/especialidades.txt", "r", encoding="utf-8") as arq_especialidade:
+    with open("../arquivos/especialidades.txt", "r", encoding="utf-8") as arq_especialidade:
       especialidades = arq_especialidade.readlines()
       for i, linha in enumerate(especialidades):
         tecnico = []
@@ -116,18 +116,21 @@ def filtragem(cord_chamado, areas_chamado, max_distance):
   return tecs_pesados_ordenados, ordem_pesada, distancias
 
 def salvar_chamado(chamado):
-    with open("BackEnd/arquivos/chamados.txt", "w", encoding="utf-8") as arq_chamados:
-        arq_chamados.write(f"{chamado}")
+    with open("../arquivos/chamados.txt", "w", encoding="utf-8") as arq_chamados:
+      for i in chamado:    
+        arq_chamados.write(f"{i}\n")
 
-def carregar_chamados():
-   chamado = []
-   try:
-       with open("BackEnd/arquivos/chamados.txt", "r", encoding="utf-8") as arq_chamados:
-           for linha in arq_chamados:
-               chamado.append(linha.strip())
-   except FileNotFoundError:
-       print("Arquivo de chamados não encontrado.")
+def carregar_chamado():
+  chamado = []
+  try:
+    with open("../arquivos/chamados.txt", "r", encoding="utf-8") as arq_chamados:
+      for linha in arq_chamados:
+        chamado.append(linha.strip())
+  except FileNotFoundError:
+    print("Arquivo de chamados não encontrado.")
+    
+  return chamado
 
 def salvar_resultado(tabela):
-    with open("BackEnd/arquivos/resultados.txt", "w", encoding="utf-8") as arq_resultados:
+    with open("../arquivos/resultados.txt", "w", encoding="utf-8") as arq_resultados:
         arq_resultados.write(f"{tabela}")

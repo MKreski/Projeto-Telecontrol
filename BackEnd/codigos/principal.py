@@ -25,8 +25,8 @@ while True:
         cordenadas_chamado = chamado[2]
         areas_escritas = chamado[3]
         print(f"A empresa {empresa_chamado} localizada em {cordenadas_chamado} está solicitando: ")
-        for id in areas_chamado:
-            print(areas_escritas[id])
+        for area in areas_escritas:
+            print(area)
         
         salvar_chamado(chamado)
 
